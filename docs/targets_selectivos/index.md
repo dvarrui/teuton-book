@@ -2,9 +2,9 @@
 
 # Targets selectivos
 
-Habitualmente, cuando ejecutamos un test `start.rb` queremos evaluar todos los `targets` sobre las máquinas definidas en el fichero `config.yaml`. Para ello, lo habitual es que todos las `cases` hayan establecido valor para los mismos parámetros. Esto es lo más habitual.
+## Ejemplo 1: Target uniforme
 
-## Ejemplo 1
+Normalmente, cuando ejecutamos un test `start.rb` queremos evaluar todos los `targets` sobre todas las máquinas definidas en el fichero `config.yaml`. En este caso, todos las `cases` tienen los mismos parámetros.
 
 Veamos [01.example](./01.example/):
 
@@ -39,9 +39,9 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-## Ejemplo 2
+## Ejemplo 2: target selectivo
 
-La herramienta Teuton es muy flexible y permite que definir diferentes parámetros para cada `case`. Se entiende que son casos "particulares" que van a tener un tratamiento "especial". Porque si se trataran todos los `cases` por igual entonces el sentido común nos dice que deberían tener los mismos parámetros. 
+Pero la herramienta Teuton es muy flexible y se puede adaptar a casi cualquier estilo docente. En este caso vamos a definir diferentes parámetros en cada `case`. Se entiende que son casos "particulares" que van a tener un tratamiento "especial". Porque si se trataran todos los `cases` por igual entonces el sentido común nos dice que deberían tener los mismos parámetros. 
 
 Veamos [02.example](./02.example/):
 
@@ -55,6 +55,8 @@ cases:
   rol: sith
 - tt_members: Alumno 3
 ```
+
+El "Alumno 2" tiene un parámetro diferente,, el cual vamos a usar para elegir un target u otro.
 
 ```ruby
 # 02.example/start.rb
@@ -75,7 +77,7 @@ group "Target selectivo" do
 end
 ```
 
-> Hemos añadido una sentencia `log` simplemente por añadir más información en el informe de salida.
+También se ha añadido una sentencia `log`, simplemente para registrar información en el informe de salida.
 
 ```
 $ teuton 02.example             

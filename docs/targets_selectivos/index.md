@@ -56,7 +56,7 @@ cases:
 - tt_members: Alumno 3
 ```
 
-El "Alumno 2" tiene un parámetro diferente,, el cual vamos a usar para elegir un target u otro.
+El "Alumno 2" tiene un parámetro diferente, el cual vamos a utilizar para decidir ejecutar un target u otro.
 
 ```ruby
 # 02.example/start.rb

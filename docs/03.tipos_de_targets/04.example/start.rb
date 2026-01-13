@@ -1,5 +1,5 @@
 ## 04.example/start.rb
-group "Target condicional" do
+group "Target caso especial" do
   if get(:rol) == "jedi"
     # Evaluar un target especial
     log "En este caso tenemos un JEDI"

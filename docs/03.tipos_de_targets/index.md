@@ -5,9 +5,12 @@
 1. [Estándar](#1-target-estándar)
 2. [Con peso](#2-target-con-peso)
 3. [Penalización](#3-target-de-penalización)
-4. [Condicional](#4-condicional)
-5. Personalizado
-6. DEVEL: con condición de salida
+4. [Caso especial](#4-target-de-un-caso-especial)
+5. [Personalizado](#5-target-personalizado)
+6. DEVEL: condición de salida
+    * condición `:exit`
+    * condición `:zero`
+    * condición `:clear`
 
 ## 1. Target estándar
 
@@ -139,8 +142,7 @@ CASE RESULTS
 
 Todos los `cases` tienen el 33% porque sólo se cumple el target 2 que es el 33% del total.
 
-
-## 4. Condicional
+## 4. Target de un caso especial
 
 Teuton es muy flexible y se puede adaptar a casi cualquier estilo docente. En este caso vamos a definir un parámetro diferente excluivo para un `case`. Se entiende que éste `case` es un caso "particular" y que va a tener un tratamiento "especial". Porque si se trataran todos los `cases` por igual entonces el sentido común nos dice que deberían tener los mismos parámetros. 
 
@@ -161,7 +163,7 @@ El "Alumno 2" tiene un parámetro diferente. Usaremos el valor de este parámetr
 
 ```ruby
 ## 04.example/start.rb
-group "Target condicional" do
+group "Target caso especial" do
   if get(:rol) == "jedi"
     # Evaluar un target especial para los jedi
     log "En este caso tenemos un JEDI"
@@ -178,7 +180,7 @@ group "Target condicional" do
 end
 ```
 
-También se ha añadido una sentencia `log`, simplemente para registrar información en el informe de salida.
+> **NOTA**: Hemos añadido una sentencia `log`, para registrar este caso especial en el informe de salida.
 
 ```
 $ teuton 04.example
@@ -190,7 +192,6 @@ CASE RESULTS
 | 02   | Alumno 2 | 100.0 | ✔     |
 | 03   | Alumno 3 | 0.0   | ?     |
 +------+----------+-------+-------+
-
 ```
 
 Informe de salida `cat/04.example/case-02.txt`
@@ -209,4 +210,50 @@ GROUPS
         Alterations : Read exit code
         Expected    : Greater than 0
         Result      : 1
+```
+
+## 5. Target personalizado
+
+Puede ser que queramos ejecutar el mismo `target` a todos los `cases` pero "diferente". Esto es, vamos a "personalizar" el `target` para que sea parecido en cada `case` pero no exactamente igual. Es como el caso anterior de "caso especial" pero en este caso consideramos a todos los `cases` como casos especiales.
+
+Podríamos incluir en el código del test muchas sentencias `if-end`, pero lo vamos a hacer de forma más sencilla. En este caso tenemos 1 target que evalua la presencia del usuario `username`, donde `username` tendrá un valor diferente para cada `case`.
+
+Veamos [05.example](./05.example/):
+
+```yaml
+# 05.example/config.yaml
+---
+global:
+cases:
+- tt_members: Alumno 1
+  username: yoda
+- tt_members: Alumno 2
+  username: emperador
+- tt_members: Alumno 3
+  username: root
+```
+
+```ruby
+## 05.example/start.rb
+group "Target personalizado" do
+
+  target "Existe el usuario #{get(:username)}"
+  run "id #{get(:username)}"
+  expect_ok
+
+end
+```
+
+Sólo tenemos 1 `target`, pero como el valor devuelto por `get(:username)` es diferente para cada `case`, entonces el comando `run` que se ejecuta en cada uno es ligeramente diferente. Lo hemos "personalizado" para cada `case`.
+
+```
+$ teuton 05.example 
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 0.0   | ?     |
+| 02   | Alumno 2 | 0.0   | ?     |
+| 03   | Alumno 3 | 100.0 | ✔     |
++------+----------+-------+-------+
 ```

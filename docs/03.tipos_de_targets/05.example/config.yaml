@@ -1,0 +1,10 @@
+## 05.example/config.yaml
+---
+global:
+cases:
+- tt_members: Alumno 1
+  username: yoda
+- tt_members: Alumno 2
+  username: emperador
+- tt_members: Alumno 3
+  username: root

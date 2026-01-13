@@ -12,5 +12,5 @@ Poco a poco iremos incluyendo:
 
 # Tutoriales
 
-* [Tutorial: Crear un test para Nginx, paso a paso](./nginx/index.md)
+* [Tutorial: Crear un test para Nginx, paso a paso](./test_nginx/index.md)
 * [Tutorial: Targets selectivos](./targets_selectivos/index.md)

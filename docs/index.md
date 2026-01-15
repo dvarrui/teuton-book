@@ -15,4 +15,4 @@ Poco a poco iremos incluyendo:
 * Tutorial: [Crear un test para Nginx, paso a paso](./01.test_nginx/index.md)
 * Explicación: [Targets selectivos](./02.targets_selectivos/index.md)
 * Explicación [Tipos de target](./03.tipos_de_targets/index.md)
-* EN DESARROLLO: [Disparadores de acciones](./04.when-action/index.md)
+* EN DESARROLLO: [Disparadores de acciones](./04.when-event-action/index.md)

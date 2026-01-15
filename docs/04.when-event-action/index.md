@@ -31,7 +31,7 @@ group "Target con condición de salida" do
   run "id vader"
   expect_ok
 
-  when :last_target_failed, do 
+  when_event :last_target_failed, do 
     stop
   end
 
@@ -44,7 +44,7 @@ end
 Es test se ejecuta de la siguiente forma:
 * target 1: Se evalúa y se puntúa.
 * target 2: Se evalúa y se puntúa.
-* when: Según el resultado del último target haremos:
+* when_event: Según el resultado del último target haremos:
     * Si el resultado es correcto, se continúa de forma normal con el target 3.
     * Si el resultado es un fallo, entonces el test se termina aquí para este `case`.
 * Al finalizar:
@@ -65,7 +65,7 @@ group "Target con condición de salida" do
   run "id vader"
   expect_ok
 
-  when :last_target_failed, do 
+  when_event :last_target_failed, do 
     grades_to_zero
   end
 
@@ -78,7 +78,7 @@ end
 Es test se ejecuta de la siguiente forma:
 * target 1: Se ejecuta y se evalúa.
 * target 2: Se ejecuta y se evalúa.
-* when: Según el resultado del último target haremos:
+* when_event: Según el resultado del último target haremos:
     * Si el resultado es correcto se continúa de forma normal.
     * Si el resultado es un fallo, entonces todas las notas recopiladas hasta el momento se ponen a cero.
 * Al finalizar:
@@ -99,7 +99,7 @@ group "Target con condición de salida" do
   run "id vader"
   expect_ok
 
-  when :last_target_failed, do 
+  when_event :last_target_failed, do 
     grades_to_zero
     stop
   end
@@ -113,6 +113,6 @@ end
 Es test se ejecuta de la siguiente forma:
 * target 1: Se ejecuta y se evalúa.
 * target 2: Se ejecuta y se evalúa.
-* when: Según el resultado del último target haremos:
+* when_event: Según el resultado del último target haremos:
     * Si el resultado es correcto se continúa de forma normal.
     * Si el resultado es un fallo, entonces todas las notas recopiladas hasta el momento se ponen a cero y se termina el test. La nota final es cero.

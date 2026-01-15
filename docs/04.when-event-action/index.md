@@ -85,7 +85,7 @@ Es test se ejecuta de la siguiente forma:
     * Se continúa evaluando al resto de los "targets" pendientes.
     * La nota final se obtiene de los targets evaluados y los no evaluados.
 
-## Combinamos las dos accines
+## Combinamos las dos acciones
 
 Ejemplo:
 

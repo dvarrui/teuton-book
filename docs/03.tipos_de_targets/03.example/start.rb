@@ -1,6 +1,6 @@
 # 03.example/start.rb
 group "Target de penalización" do
-  target "Existe el usuario roo"
+  target "Existe el usuario root"
   run "id root"
   expect_ok
 

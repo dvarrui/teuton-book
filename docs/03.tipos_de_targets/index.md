@@ -2,9 +2,9 @@
 
 # Tipos de "targets"
 
-1. [Estándar](#1-target-estándar)
+1. [Normal](#1-target-normal)
 2. [Con peso](#2-target-con-peso)
-3. [Penalización](#3-target-de-penalización)
+3. [Castigo](#3-target-de-castigo)
 4. [Caso especial](#4-target-de-un-caso-especial)
 5. [Personalizado](#5-target-personalizado)
 6. [DEVEL: con respuesta al fallo](#6-target-con-respuesta-al-fallo)
@@ -12,9 +12,9 @@
     * Acción `:zero`
     * Acción `:clean`
 
-## 1. Target estándar
+## 1. Target normal
 
-Normalmente, cuando ejecutamos un test `start.rb` queremos evaluar todos los `targets` sobre todas las máquinas definidas en el fichero `config.yaml`. En este caso, todos las `cases` tienen los mismos parámetros.
+Cuando ejecutamos un test (`start.rb`) lo habitual es evaluar todos los `targets` sobre todos los `cases` definidos en el fichero `config.yaml`. En este caso, todos los `cases` tendrán los mismos parámetros.
 
 Veamos [01.example](./01.example/):
 
@@ -29,7 +29,6 @@ cases:
 ```
 
 ```ruby
-# 01.example/start.rb
 # 01.example/start.rb
 group "Target estándar" do
   target "Existe el usuario obiwan"
@@ -54,11 +53,11 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-Todos los `cases` tienen el 50% porque el usuario "vader" no existe y es lo esperado.
+Todos los `cases` tienen el 50% porque el usuario "vader" no existe en las máquinas.
 
 ## 2. Target con peso
 
-Por defecto, los targets tiene peso 1.0, pero se puede modificar para que tengan distintos valores según su importancia. En este caso vamos a modificar el ejemplo anterior para que sea más importante el "target 1" del usuario `obiwan` que el "target 2" con el usuario `vader`.
+Por defecto, los targets tiene peso 1.0, pero se puede modificar para que tengan distintos valores según su "importancia" en la nota final. Vamos a modificar el ejemplo anterior para dar más "importancia" al "target 1" frente al "target 2".
 
 Veamos [02.example](./02.example/):
 
@@ -75,7 +74,7 @@ group "Target con pesos" do
 end
 ```
 
-> Los pesos pueden ser valores números enteros o números decimales.
+> Los pesos pueden ser números enteros o números decimales.
 
 ```
 $ teuton 02.example 
@@ -91,18 +90,16 @@ CASE RESULTS
 
 Todos los `cases` tienen el 33% porque sólo se cumple el target 2 que es el 33% del total.
 
-## 3. Target de penalización
+## 3. Target de castigo
 
-El `target` de penalización se usa para "castigar" situaciones "prohibidas". Por ejemplo, queremos que el alumno tenga el usuario `root`, pero si existe el usuario `vader` entonces penalizamos al alumno con -1.0.
+El `target` de castigo o de penalización, se usa para "castigar" situaciones "prohibidas" o que no deben ocurrir para que la práctica sea correcta. Por ejemplo, queremos que el alumno tenga el usuario `root`, pero si existe el usuario `vader` entonces penalizamos con -1.0. Para ello, volvemos a utilizar los pesos, pero esta vez en negativo.
 
-Por defecto, los `targets` tiene peso 1.0, pero se puede modificar para que tengan distintos valores según su importancia. En este caso vamos a modificar el ejemplo anterior para que sea más importante el target 1 del usuario `obiwan` que el target 2 con el usuario `vader`.
-
-Veamos [02.example](./02.example/):
+Veamos [03.example](./03.example/):
 
 ```ruby
 # 03.example/start.rb
-group "Target de penalización" do
-  target "Existe el usuario roo"
+group "Target de castigo" do
+  target "Existe el usuario root"
   run "id root"
   expect_ok
 
@@ -112,9 +109,9 @@ group "Target de penalización" do
 end
 ```
 
-> La penalización puede ser un entero negativo o un número decimal negativo.
+> La penalización puede ser un entero negativo o un número decimal negativo. Realmente este caso de targets es igual que el anterior de los pesos, pero usando valores negativos en su lugar.
 
-Si el usuario `vader` no existe, entonces no hay penalización:
+Si el usuario `vader` no existe, entonces no hay castigo:
 ```
 $ teuton 03.example 
  
@@ -127,7 +124,7 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-Si el usuario `vader` existe, entonces si hay penalización:
+Si el usuario `vader` existe, entonces si hay castigo:
 ```
 $ teuton 03.example
  
@@ -140,11 +137,9 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-Todos los `cases` tienen el 33% porque sólo se cumple el target 2 que es el 33% del total.
-
 ## 4. Target de un caso especial
 
-Teuton es muy flexible y se puede adaptar a casi cualquier estilo docente. En este caso vamos a definir un parámetro diferente excluivo para un `case`. Se entiende que éste `case` es un caso "particular" y que va a tener un tratamiento "especial". Porque si se trataran todos los `cases` por igual entonces el sentido común nos dice que deberían tener los mismos parámetros. 
+Teuton es muy flexible y se puede adaptar a muchos estilos docentes. En este caso vamos a definir un parámetro diferente exclusivo para un `case`. Se entiende que éste `case` es un caso "particular" y que va a tener un tratamiento "especial".
 
 Veamos [04.example](./04.example/):
 
@@ -214,9 +209,9 @@ GROUPS
 
 ## 5. Target personalizado
 
-Puede ser que queramos ejecutar el mismo `target` a todos los `cases` pero "diferente". Esto es, vamos a "personalizar" el `target` para que sea parecido en cada `case` pero no exactamente igual. Es como el caso anterior de "caso especial" pero en este caso consideramos a todos los `cases` como casos especiales.
+Usaramos este tipo de `target` cuando queremos tener "targets" diferentes o personalizados para cada uno de los `cases`. Es parecido al caso anterior de "caso especial" pero en este caso consideramos a todos los `cases` como casos especiales.
 
-Podríamos incluir en el código del test muchas sentencias `if-end`, pero lo vamos a hacer de forma más sencilla. En este caso tenemos 1 target que evalua la presencia del usuario `username`, donde `username` tendrá un valor diferente para cada `case`.
+Podríamos incluir en el código del test muchas sentencias `if-end`, pero lo vamos a hacer de otra forma más sencilla. En este caso vamos a tener un target que evalua la presencia del usuario `username`, donde `username` tendrá un valor diferente para cada `case`.
 
 Veamos [05.example](./05.example/):
 
@@ -244,7 +239,7 @@ group "Target personalizado" do
 end
 ```
 
-Sólo tenemos 1 `target`, pero como el valor devuelto por `get(:username)` es diferente para cada `case`, entonces el comando `run` que se ejecuta en cada uno es ligeramente diferente. Lo hemos "personalizado" para cada `case`.
+Sólo tenemos un `target`, pero como el valor devuelto por `get(:username)` es diferente para cada `case`, entonces el comando `run` que se ejecuta en cada uno es ligeramente diferente. Lo hemos "personalizado" para cada `case`.
 
 ```
 $ teuton 05.example 

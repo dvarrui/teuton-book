@@ -1,5 +1,9 @@
 [<< back](../index.md)
 
+**Se aconseja leer la explicación sobre [tipos de targets](../03.tipos_de_targets/index.md) porque está más completa y actualizada**
+
+---
+
 # Targets selectivos
 
 ## Ejemplo 1: Target uniforme

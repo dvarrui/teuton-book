@@ -20,12 +20,16 @@ Los eventos tienen tres partes
 
 En una primera versión tendremos los siguientes:
 
-| Tipo      | Elemento       | Descripción |
-| --------- | -------------- | ----------- |
-| OBJECT    | last_target    | Es el último `target` evaluado |
-| CONDITION | failed         | El estado del objeto es `failed`|
+| Tipo      | Elemento       | Descripción                                  |
+| --------- | -------------- | -------------------------------------------- |
+| OBJECT    | last_target    | Se aplica en el último `target` evaluado     |
+| OBJECT    | every_target   | Se aplica en cada uno de los "targets"       |
+| OBJECT    | all_targets    | Se aplica en todos los "targets" en conjunto |
+| CONDITION | failed         | El estado del objeto es fallido              |
+| CONDITION | is_ok          | El estado del objeto es correcto             |
 | ACTION    | scores_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
-| ACTION    | stop           | Se para el test |
+| ACTION    | stop           | Se para el test para este `case`             |
+| ACTION    | log            | Registra un mensaje en el log                |
 
 ## Ejemplo 1: acción "stop"
 
@@ -114,6 +118,7 @@ group "Target con condición de salida" do
   expect_ok
 
   event on: :last_target, when: :failed, do 
+    log "El test se para por fallar el target 2"
     scores_to_zero
     stop
   end
@@ -130,5 +135,9 @@ Es test se ejecuta de la siguiente forma:
 * `event`
     * `on: :last_target`, según el resultado del último target haremos:
     * `when: :failed`
-        * Si el resultado es un fallo, entonces todos los "targets" evalaudos hasta el momento se ponen a cero y se termina el test. En este caso, la nota final será cero.
+        * Si el resultado es un fallo, entonces:
+            * Se registra un mensaje en el log del informe.
+            * todos los "targets" evalaudos hasta el momento se ponen a cero
+            * y se termina el test. 
+            * En este caso, la nota final será cero.
         * Si el resultado es correcto se continúa de forma normal.

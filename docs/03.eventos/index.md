@@ -7,7 +7,7 @@ Para la versión 4.0.0
 
 # Eventos
 
-Los eventos sirven para definir acciones que se disparar únicamente cuando se producen las condiciones adecuadas.
+Los eventos sirven para definir acciones que se disparan únicamente cuando se producen las condiciones adecuadas.
 
 Sintaxis: 
 ```ruby

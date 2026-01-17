@@ -7,10 +7,6 @@
 3. [Castigo](#3-target-de-castigo)
 4. [Caso especial](#4-target-de-un-caso-especial)
 5. [Personalizado](#5-target-personalizado)
-6. [DEVEL: con respuesta al fallo](#6-target-con-respuesta-al-fallo)
-    * Acción `:stop`
-    * Acción `:zero`
-    * Acción `:clean`
 
 ## 1. Target normal
 

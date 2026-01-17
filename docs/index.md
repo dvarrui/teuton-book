@@ -7,7 +7,7 @@ Poco a poco iremos incluyendo: documentación, tutoriales, casos de uso, etc.
 
 # Índice
 
-* Tutorial: [Crear un test para Nginx, paso a paso](./01.test_nginx/index.md)
-* DEPRECATED: [Targets selectivos](./02.targets_selectivos/index.md)
-* Explicación [Tipos de target](./03.tipos_de_targets/index.md)
-* EN DESARROLLO: [Disparadores de acciones](./04.when-event-action/index.md)
+1.[Tutorial Nginx](./01.test_nginx/index.md): Crear un test para Nginx, paso a paso
+* [DEPRECATED] [Targets selectivos](./02.targets_selectivos/index.md)
+* Explicación: [Tipos de target](./03.tipos_de_targets/index.md)
+* [EN DESARROLLO] Propuesta: [Disparadores de acciones](./04.event-when-action/index.md)

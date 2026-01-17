@@ -1,8 +1,7 @@
 [<< back](../index.md)
 
 ```
-EN DESARROLLO!!!
-Para la versión 4.0.0
+EN DESARROLLO!!! (Para la versión 3.0.0)
 ```
 
 # Eventos

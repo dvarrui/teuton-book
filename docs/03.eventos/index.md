@@ -24,7 +24,7 @@ En una primera versión tendremos los siguientes:
 | --------- | -------------- | ----------- |
 | OBJECT    | last_target    | Es el último `target` evaluado |
 | CONDITION | failed         | El estado del objeto es `failed`|
-| ACTION    | grades_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
+| ACTION    | scores_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
 | ACTION    | stop           | Se para el test |
 
 ## Ejemplo 1: acción "stop"
@@ -78,7 +78,7 @@ group "Target con condición de salida" do
   expect_ok
 
   event on: :last_target, when: :failed, do 
-    grades_to_zero
+    scores_to_zero
   end
 
   target "Existe el usuario mail"
@@ -114,7 +114,7 @@ group "Target con condición de salida" do
   expect_ok
 
   event on: :last_target, when: :failed, do 
-    grades_to_zero
+    scores_to_zero
     stop
   end
 

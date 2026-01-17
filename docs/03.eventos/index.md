@@ -22,7 +22,7 @@ En una primera versión tendremos los siguientes:
 
 | Tipo      | Elemento       | Descripción |
 | --------- | -------------- | ----------- |
-| OBJECT    | last_target    | Es el último `target` que se haya evaluado |
+| OBJECT    | last_target    | Es el último `target` evaluado |
 | CONDITION | failed         | El estado del objeto es `failed`|
 | ACTION    | grades_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
 | ACTION    | stop           | Se para el test |

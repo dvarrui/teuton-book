@@ -1,7 +1,0 @@
-# 01.example/config.yaml
----
-global:
-cases:
-- tt_members: Alumno 1
-- tt_members: Alumno 2
-- tt_members: Alumno 3

@@ -8,6 +8,5 @@ Poco a poco iremos incluyendo: documentación, tutoriales, casos de uso, etc.
 # Índice
 
 1. [Tutorial Nginx](./01.test_nginx/index.md): Crear un test para Nginx, paso a paso
-2. [Targets selectivos](./02.targets_selectivos/index.md): **DEPRECATED** Consultar explicación de [tipos de targets](./03.tipos_de_targets/index.md).
-3. [Tipos de targets](./03.tipos_de_targets/index.md): Explicación sobre los distintos tipos de "targets" y su caso de uso.
-4. [Eventos](./04.eventos/index.md): **Propuesta EN DESARROLLO** Los eventos disparan determinadas acciones cuando se dan las circunstancias adecuadas.
+2. [Tipos de targets](./02.tipos_de_targets/index.md): Explicación sobre los distintos tipos de "targets" y su caso de uso.
+3. [Eventos](./03.eventos/index.md): **Propuesta EN DESARROLLO** Los eventos disparan determinadas acciones cuando se dan las circunstancias adecuadas.

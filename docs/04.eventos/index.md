@@ -5,19 +5,30 @@ EN DESARROLLO!!!
 Para la versión 4.0.0
 ```
 
-# Disparadores de acciones
+# Eventos
 
-Vamos a tener la posibilidad de invocar las siguientes acciones:
+Los eventos sirven para definir acciones que se disparar únicamente cuando se producen las condiciones adecuadas.
 
-Acciones:
-* **stop**: Se da la orden de para el test en ese instante.
-* **grades_to_zero**: Todos los puntos ganados hasta el momento se ponen a cero, pero el test continúa.
+Sintaxis: 
+```ruby
+event on: OBJECT, when: CONDITION do ACTIONS end 
+```
 
-Evento disparador:
-* El evento es lo que dispara la acción. De momento sólo tenemos definido un evento.
-* Evento **last_target_failed**: Este evento se produce cuando el último `target` evaluado no es correcto.
+Los eventos tienen tres partes
+* `on: OBJECT`, define el objeto sobre el que se va a definir el evento.
+* `when: CONDITION`, define la condición que debe cumplirse sobre el OBJECT para disparar la acción o las acciones.
+* `do ACTIONS end`, define la acción o las acciones que se van a ejecutar cuando se dispare el evento.
 
-## Acción "stop"
+En una primera versión tendremos los siguientes:
+
+| Tipo      | Elemento       | Descripción |
+| --------- | -------------- | ----------- |
+| OBJECT    | last_target    | Es el último `target` que se haya evaluado |
+| CONDITION | failed         | El estado del objeto es `failed`|
+| ACTION    | grades_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
+| ACTION    | stop           | Se para el test |
+
+## Ejemplo 1: acción "stop"
 
 Ejemplo:
 
@@ -31,7 +42,7 @@ group "Target con condición de salida" do
   run "id vader"
   expect_ok
 
-  when_event :last_target_failed, do 
+  event on: :last_target, when: :failed, do 
     stop
   end
 
@@ -44,14 +55,16 @@ end
 Es test se ejecuta de la siguiente forma:
 * target 1: Se evalúa y se puntúa.
 * target 2: Se evalúa y se puntúa.
-* when_event: Según el resultado del último target haremos:
-    * Si el resultado es correcto, se continúa de forma normal con el target 3.
-    * Si el resultado es un fallo, entonces el test se termina aquí para este `case`.
+* event: 
+    * `on: :last_taget`: según el resultado del último target haremos:
+    * `when: :failed`
+        * Si el resultado es un fallo, entonces el test se termina aquí (para este `case`).
+        * Si el resultado es correcto, se continúa de forma normal con el target 3.
 * Al finalizar:
-    * El resto de los "targets" pendientes de evaluar se consideran como fallos.
+    * El resto de los "targets" se quedan sin evaluar.
     * La nota final se obtiene de los targets evaluados y los no evaluados.
 
-## Acción "grades_to_zero"
+## Ejemplo 2: acción "grades_to_zero"
 
 Ejemplo:
 
@@ -65,7 +78,7 @@ group "Target con condición de salida" do
   run "id vader"
   expect_ok
 
-  when_event :last_target_failed, do 
+  event on: :last_target, when: :failed, do 
     grades_to_zero
   end
 
@@ -78,14 +91,16 @@ end
 Es test se ejecuta de la siguiente forma:
 * target 1: Se ejecuta y se evalúa.
 * target 2: Se ejecuta y se evalúa.
-* when_event: Según el resultado del último target haremos:
-    * Si el resultado es correcto se continúa de forma normal.
-    * Si el resultado es un fallo, entonces todas las notas recopiladas hasta el momento se ponen a cero.
+* event:
+    * `on: :last_targt`, según el resultado del último target haremos:
+    * `when: :failed`
+        * Si el resultado es un fallo, entonces todos los "targets" evaluados hasta el momento se ponen a cero.
+        * Si el resultado es correcto se continúa de forma normal.
 * Al finalizar:
-    * Se continúa evaluando al resto de los "targets" pendientes.
+    * Se continúa evaluando al resto de los "targets" no evaluados.
     * La nota final se obtiene de los targets evaluados y los no evaluados.
 
-## Combinamos las dos acciones
+## Ejemplo 3: Combinar dos acciones
 
 Ejemplo:
 
@@ -99,7 +114,7 @@ group "Target con condición de salida" do
   run "id vader"
   expect_ok
 
-  when_event :last_target_failed, do 
+  event on: :last_target, when: :failed, do 
     grades_to_zero
     stop
   end
@@ -113,6 +128,8 @@ end
 Es test se ejecuta de la siguiente forma:
 * target 1: Se ejecuta y se evalúa.
 * target 2: Se ejecuta y se evalúa.
-* when_event: Según el resultado del último target haremos:
-    * Si el resultado es correcto se continúa de forma normal.
-    * Si el resultado es un fallo, entonces todas las notas recopiladas hasta el momento se ponen a cero y se termina el test. La nota final es cero.
+* `event`
+    * `on: :last_target`, según el resultado del último target haremos:
+    * `when: :failed`
+        * Si el resultado es un fallo, entonces todos los "targets" evalaudos hasta el momento se ponen a cero y se termina el test. En este caso, la nota final será cero.
+        * Si el resultado es correcto se continúa de forma normal.

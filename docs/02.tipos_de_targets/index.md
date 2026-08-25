@@ -12,7 +12,7 @@
 
 Cuando ejecutamos un test (`start.rb`) lo habitual es evaluar todos los `targets` sobre todos los `cases` definidos en el fichero `config.yaml`. En este caso, todos los `cases` tendrán los mismos parámetros.
 
-Veamos [01.example](./01.example/):
+Veamos [01.example/config.yaml](01.example/config.yaml):
 
 ```yaml
 # 01.example/config.yaml
@@ -23,6 +23,8 @@ cases:
 - tt_members: Alumno 2
 - tt_members: Alumno 3
 ```
+
+* [01.example/start.rb](./01.example/start.rb)
 
 ```ruby
 # 01.example/start.rb
@@ -55,7 +57,7 @@ Todos los `cases` tienen el 50% porque el usuario "vader" no existe en las máqu
 
 Por defecto, los targets tiene peso 1.0, pero se puede modificar para que tengan distintos valores según su "importancia" en la nota final. Vamos a modificar el ejemplo anterior para dar más "importancia" al "target 1" frente al "target 2".
 
-Veamos [02.example](./02.example/):
+* [02.example/start.rb](02.example/start.rb):
 
 ```ruby
 # 02.example/start.rb
@@ -90,7 +92,7 @@ Todos los `cases` tienen el 33% porque sólo se cumple el target 2 que es el 33%
 
 El `target` de castigo o de penalización, se usa para "castigar" situaciones "prohibidas" o que no deben ocurrir para que la práctica sea correcta. Por ejemplo, queremos que el alumno tenga el usuario `root`, pero si existe el usuario `vader` entonces penalizamos con -1.0. Para ello, volvemos a utilizar los pesos, pero esta vez en negativo.
 
-Veamos [03.example](./03.example/):
+Veamos [03.example/start.rb](03.example/start.rb):
 
 ```ruby
 # 03.example/start.rb
@@ -137,7 +139,7 @@ CASE RESULTS
 
 Teuton es muy flexible y se puede adaptar a muchos estilos docentes. En este caso vamos a definir un parámetro diferente exclusivo para un `case`. Se entiende que éste `case` es un caso "particular" y que va a tener un tratamiento "especial".
 
-Veamos [04.example](./04.example/):
+Veamos [04.example/start.rb](04.example/start.rb):
 
 ```yaml
 # 04.example/config.yaml
@@ -209,7 +211,7 @@ Usaramos este tipo de `target` cuando queremos tener "targets" diferentes o pers
 
 Podríamos incluir en el código del test muchas sentencias `if-end`, pero lo vamos a hacer de otra forma más sencilla. En este caso vamos a tener un target que evalua la presencia del usuario `username`, donde `username` tendrá un valor diferente para cada `case`.
 
-Veamos [05.example](./05.example/):
+* [05.example/config.yaml](05.example/config.yaml):
 
 ```yaml
 # 05.example/config.yaml
@@ -223,6 +225,8 @@ cases:
 - tt_members: Alumno 3
   username: root
 ```
+
+* [05.example/start.rb](05.example/start.rb):
 
 ```ruby
 ## 05.example/start.rb

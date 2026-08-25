@@ -37,28 +37,28 @@ Esta situación es útil en:
 
 ### 1.1 Test: Primera versión
 
-[Consultar el test_v1](test_v1)
+> Consultar el contenido de la carpeta `test_v1`.
 
 El test tiene los `targets` definidos en dos ficheros.
 
-* Fichero `project.rb`:
+* Fichero [test_v1/project.rb](./test_v1/project.rb):
   * Se definen `targets` que leen el contenido del proyecto GNS3 (`project/lab.gns3`). 
   * Se hacen consultas al proyecto GNS3 para crear nuevos parámetros con los valores de los puerto correspondientes a la consola de cada dispositivo VPCS.
   * Vemos como se usa el comando `jq` para leer el contenido JSON del fichero del proyecto GNS3.
-* Fichero `interfaces.rb`:
+* Fichero [test_v1/interfaces.rb](./test_v1/interfaces.rb):
   * Se definen `targets` que "inyectan" comandos en la consola de cada dispositivo VPCS del simulador y valoran su salida.
   * Se usan los comandos `echo` y `curl` para "inyectar" comandos en IP:Port correspondiente a la consola de cada dispositivo.
   * Es necesario que el GNS3 server esté en ejecución y los dispositivos activados.
 
 ### 1.2 Test: Cambiando tareas repetitivas por bucles (Iteradores)
 
-[Consultar el test_v2](test_v2)
+> Consultar el contenido de la carpeta `test_v2`.
 
 Este test es una copia del anterior pero se han realizado algunas mejoras.
 
-* Del fichero de configuración se han eliminado los parámetro `project_file` y `project_dir`, porque se pueden extraer del parámetro `project_path`. Esto lo podemos ver en las líneas 3-9 del fichero `project.rb`.
+* Del [fichero de configuración](./test_v2/config.yaml) se han eliminado los parámetro `project_file` y `project_dir`, porque se pueden extraer del parámetro `project_path`. Esto lo podemos ver en las líneas 3-9 del fichero [test_v2/project.rb](./test_v2/project.rb).
 * En el fichero `project.rb` se han sustituido algunas tareas repetitivas por un bucle (iterador) como podemos ver en las líneas 16-23 y 29-36.
-* En el fichero `interfaces.rb` se añaden varias instrucciones `readme` que nos ayudarán a la construcción de un fichero Markdown con el enunciado. Esto lo podemos ver en la líneas 2-4 y 23-25.
+* En el fichero  [test_v2/interfaces.rb](./test_v2/interfaces.rb) se añaden varias instrucciones `readme` que nos ayudarán a la construcción de un fichero Markdown con el enunciado. Esto lo podemos ver en la líneas 2-4 y 23-25.
 
 Para construir un enunciado a partir del test hacemos:
 
@@ -66,11 +66,11 @@ Para construir un enunciado a partir del test hacemos:
 teuton readme test_v2 > test2/README.md
 ```
 
-Podemos consultar el resultado en el fichero [test_v2/README.md](test_v2/README.md).
+Podemos consultar la salida anterior en [test_v2/README.md](test_v2/README.md).
 
 ### 1.3 Test: Conexiones vía Telnet
 
-[Consultar el test_v3](test_v3)
+> Consultar el contenido de la carpeta `test_v3`.
 
 **Crear conexiones Telnet**
 
@@ -130,7 +130,7 @@ Esta situación es útil para:
 
 ### 2.1 Test: Primera versión
 
-Se usa el mismo código de [test_v1](test_v1), pero en este caso se modifica el fichero `test_v1/config.yaml` de la siguiente forma:
+Se usa el mismo código de `test_v1`, pero en este caso se modifica el fichero `test_v1/config.yaml` de la siguiente forma:
 * Se añaden las configuraciones de los diferentes alumnos (`cases`).
 * Los parámetros que se repiten de cada `case` se ponen en la sección `global`.
 * Cada alumno tiene una IP diferente en su Host.
@@ -153,12 +153,14 @@ cases:
 
 ### 2.2 Test: Cambiando tareas repetitivas por bucles (Iteradores)
 
-Se usa el mismo código de [test_v2](test_v2), pero en este caso se añaden en el fichero `test_v2/config.yaml`, las configuraciones de cada uno de los alumnos (`cases`).
+Se usa el mismo código de `test_v2`, pero en este caso se añaden en el fichero `test_v2/config.yaml`, las configuraciones de cada uno de los alumnos (`cases`).
 
 ### 2.3 Test: Conexiones vía Telnet
 
-Se usa el mismo código de [test_v3](test_v3), pero en este caso se añaden en el fichero `test_v3/config.yaml`, las configuraciones de cada uno de los alumnos (`cases`).
+Se usa el mismo código de `test_v3`, pero en este caso se añaden en el fichero `test_v3/config.yaml`, las configuraciones de cada uno de los alumnos (`cases`).
 
-## 3. Situación: incorporamos un nodo Cloud
+## 3. Situación: incorporar un nodo Cloud de GNS3
 
+```
 EN DESARROLLO!
+```

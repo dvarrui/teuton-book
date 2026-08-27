@@ -1,0 +1,7 @@
+---
+global:
+  folder: files
+cases:
+- tt_members: student_1_name
+  database: database_01.db
+  query: query_01.sql

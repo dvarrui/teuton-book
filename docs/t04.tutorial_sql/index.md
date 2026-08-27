@@ -1,4 +1,4 @@
-[<<back](README.md)
+[<<back](../index.md)
 
 # Tutorial: evaluar SQL y la creación de bases de datos con Teuton
 

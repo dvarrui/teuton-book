@@ -2,6 +2,9 @@
 global:
   folder: files
 cases:
-- tt_members: student_1_name
-  database: database_01.db
-  query: query_01.sql
+- tt_members: Student 01
+  database: student1/sqlite.db
+  query: student1/query01.sql
+- tt_members: Student 02
+  database: student2/sqlite.db
+  query: student2/query01.sql

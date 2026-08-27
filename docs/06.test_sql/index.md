@@ -10,7 +10,7 @@
 Ejemplo de base de datos:
 
 ```bash
-$ sqlite3 files/database_01.db
+$ sqlite3 files/student1/sqlite.db
 
 sqlite> .schema characters
 CREATE TABLE characters ( name varchar(255), rol varchar(255));
@@ -24,7 +24,7 @@ Obiwan|Jedi
 Ejemplo:
 
 ```bash
-$ cat files/query_01.sql
+$ cat files/student1/query01.sql
 
 select * from characters where rol='Jedi';
 ```
@@ -35,7 +35,7 @@ select * from characters where rol='Jedi';
 
 Ahora vamos a crear el test que evalúa dicho ejercicio:
 
-* Definimos los "targets" (fichero `start.rb`):
+* Definimos los "targets" (fichero `demo/start.rb`):
 
 ```ruby
 group "Test SQL and database content" do
@@ -52,26 +52,43 @@ group "Test SQL and database content" do
 end
 ```
 
-* Configuramos los parámetros que necesitamos (Fichero `config.yaml`):
+* Configuramos los parámetros que necesitamos (Fichero `demo/config.yaml`):
 
 ```yaml
 ---
 global:
   folder: files
 cases:
-- tt_members: student_1
-  database: database_01.db
-  query: query_01.sql
+- tt_members: Student 01
+  database: student1/sqlite.db
+  query: student1/query01.sql
+- tt_members: Student 02
+  database: student2/sqlite.db
+  query: student2/query01.sql
 ```
 
 ## Run test
 
 ```bash
-$ teuton demo                               
-
+$ teuton demo 
+------------------------------------
+Started at 2026-08-27 12:18:28 +0100
+F.F.
+Finished in 0.010 seconds
+------------------------------------
+ 
 CASE RESULTS
-+------+-----------+-------+-------+
-| CASE | MEMBERS   | GRADE | STATE |
-| 01   | student_1 | 100.0 | ✔     |
-+------+-----------+-------+-------+
++------+------------+-------+-------+
+| CASE | MEMBERS    | GRADE | STATE |
+| 01   | Student 01 | 100.0 | ✔     |
+| 02   | Student 02 | 0.0   | ?     |
++------+------------+-------+-------+
 ```
+
+# Más ideas
+
+En los ejemplos anteriores estamos ejecutando las sentencias SQL del alumno1 contra la base de datos proporcionada por el propio alumno1.
+
+Para evaluar si la base de datos está bien creada, el profesor necesitará lanzar sentencias SQL confeccionadas por él mismo contra la base de datos de cada alumno. Pero para estar bien seguro de que las sentencias SQL proporcionadas por los alumnos son correctas, el profesor necesitará lanzar las sentencias SQL del alumno contra una base de datos controlada por el propio profesor (Por ejemplo: `files/teacher/sqlite.db`).
+
+Ya que el alumno puede "hacer trampas" si adapta el contenido de las tablas de su porpia base de datos para que su sentencia SQL de el resultado esperado por el profesor aunque esté mal construida.

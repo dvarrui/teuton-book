@@ -56,20 +56,39 @@ cases:
 * Ejecutamos el test de Teuton:
 
 ```bash
-$ teutonx demo1
+$ teuton demo1
 ------------------------------------
-Started at 2026-08-27 10:48:32 +0100
-......
+Started at 2026-08-27 12:12:50 +0100
+!F!F......
 Finished in 0.160 seconds
 ------------------------------------
  
 CASE RESULTS
-+------+------------------+-------+-------+
-| CASE | MEMBERS          | GRADE | STATE |
-| 01   | student_1_python | 100.0 | ✔     |
-| 02   | student_2_python | 100.0 | ✔     |
-| 03   | student_3_ruby   | 100.0 | ✔     |
-+------+------------------+-------+-------+
++------+-----------------+-------+-------+
+| CASE | MEMBERS         | GRADE | STATE |
+| 01   | Student 01 PY   | 100.0 | ✔     |
+| 02   | Student 02 PY   | 100.0 | ✔     |
+| 03   | Student 03 RB   | 100.0 | ✔     |
+| 04   | Student 04 NONE | 0.0   | ?     |
++------+-----------------+-------+-------+
+```
+
+* Si consultamos el informe del alumno 1 (`var/demo1/case-01.txt`) vemos que ha conseguido el 100% de 2 objetivos:
+
+```
+RESULTS
++--------------+---------------------------+
+| unique_fault | 0                         |
+| case_id      | 01                        |
+| start_time   | 2026-08-27 12:08:31 +0100 |
+| finish_time  | 2026-08-27 12:08:31 +0100 |
+| duration     | 0.032362794               |
+| max_weight   | 2.0                       |
+| good_weight  | 2.0                       |
+| fail_weight  | 0                         |
+| fail_counter | 0                         |
+| grade        | 100                       |
++--------------+---------------------------+
 ```
 
 ## Ejemplo "demo2"
@@ -102,20 +121,38 @@ end
 * Ejecutamos el test:
 
 ```bash
-$ teuton demo2 
+$ teuton demo2
 ------------------------------------
-Started at 2026-08-27 11:03:05 +0100
-..................
-Finished in 0.474 seconds
+Started at 2026-08-27 12:14:19 +0100
+!F!F!F!F!F!F..................
+Finished in 0.483 seconds
 ------------------------------------
  
 CASE RESULTS
-+------+------------------+-------+-------+
-| CASE | MEMBERS          | GRADE | STATE |
-| 01   | student_1_python | 100.0 | ✔     |
-| 02   | student_2_python | 100.0 | ✔     |
-| 03   | student_3_ruby   | 100.0 | ✔     |
-+------+------------------+-------+-------+
++------+-----------------+-------+-------+
+| CASE | MEMBERS         | GRADE | STATE |
+| 01   | Student 01 PY   | 100.0 | ✔     |
+| 02   | Student 02 PY   | 100.0 | ✔     |
+| 03   | Student 03 RB   | 100.0 | ✔     |
+| 04   | Student 04 NONE | 0.0   | ?     |
++------+-----------------+-------+-------+
 ```
 
-Hemos aumentado x6 el número de tests realizados sin apenas tener que crear nuevo código.
+* Si consultamos el informe del alumno 1 (`var/demo1/case-01.txt`) vemos que ha conseguido el 100% de 6 objetivos. Hemos aumentado x3 el número de tests realizados sin apenas tener que crear nuevo código.
+
+```
+RESULTS
++--------------+---------------------------+
+| unique_fault | 0                         |
+| case_id      | 01                        |
+| start_time   | 2026-08-27 12:08:57 +0100 |
+| finish_time  | 2026-08-27 12:08:57 +0100 |
+| duration     | 0.098197435               |
+| max_weight   | 6.0                       |
+| good_weight  | 6.0                       |
+| fail_weight  | 0                         |
+| fail_counter | 0                         |
+| grade        | 100                       |
++--------------+---------------------------+
+```
+

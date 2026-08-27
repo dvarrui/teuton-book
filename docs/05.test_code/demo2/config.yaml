@@ -2,9 +2,11 @@
 global:
   folder: files
 cases:
-- tt_members: student_1_python
-  filename: math_1.py
-- tt_members: student_2_python
-  filename: math_2.py
-- tt_members: student_3_ruby
-  filename: math_3.rb
+- tt_members: Student 01 PY
+  filename: student1/math.py
+- tt_members: Student 02 PY
+  filename: student2/math.py
+- tt_members: Student 03 RB
+  filename: student3/math.rb
+- tt_members: Student 04 NONE
+  filename: student4/none

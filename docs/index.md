@@ -3,9 +3,9 @@
 
 El proyecto **Teuton Book** surge de la necesidad de tener más información y en español sobre la herramienta [teuton](https://github.com/teuton-software/teuton).
 
-Poco a poco iremos incluyendo: documentación, tutoriales, casos de uso, etc.
+> Poco a poco iremos incluyendo: documentación, tutoriales, casos de uso, etc.
 
-# Tutoriales
+# Tutoriales y casos de uso
 
 1. [Tutorial: Nginx](./t01.tutorial_nginx/index.md): Crear un test para Nginx, paso a paso
 2. [Tutorial: GNS3](./t02.tutorial_gns3/index.md): Crear tests para GNS3, paso a paso.

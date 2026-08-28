@@ -1,7 +1,11 @@
 
 # Teuton Book
 
-El proyecto **Teuton Book** surge de la necesidad de tener más información y en español sobre la herramienta [teuton](https://github.com/teuton-software/teuton).
+El proyecto **Teuton Book** surge de la necesidad de tener más información y en español sobre los proyectos:
+
+* [teuton](https://github.com/teuton-software/teuton).
+* [teuton-get](https://github.com/teuton-software/teuton-get).
+* [teuton-panel](https://github.com/dvarrui/teuton-panel): EN DESARROLLO!
 
 > Poco a poco iremos incluyendo: documentación, tutoriales, casos de uso, etc.
 

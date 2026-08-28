@@ -1,13 +1,13 @@
 
 # Teuton Book
 
-El proyecto **Teuton Book** surge de la necesidad de tener más información y en español sobre los proyectos:
+El proyecto **Teuton Book** surge de la necesidad de tener más información y en español sobre los siguientes proyectos:
 
-* [teuton](https://github.com/teuton-software/teuton): Test de infraestructura.
-* [teuton-get](https://github.com/teuton-software/teuton-get): Gestor de repositorios de tests.
-* [teuton-panel](https://github.com/dvarrui/teuton-panel): EN DESARROLLO! Interfaz web para teuton.
+* **teuton**: Test de infraestructura ([repositorio](https://github.com/teuton-software/teuton)).
+* **teuton-get**: Gestor de repositorios de tests ([repositorio](https://github.com/teuton-software/teuton-get)).
+* **teuton-panel**: EN DESARROLLO! Interfaz web para teuton ([repositorio](https://github.com/dvarrui/teuton-panel)).
 
-> Poco a poco iremos incluyendo: documentación, tutoriales, casos de uso, etc.
+> Poco a poco iremos incluyendo: tutoriales, casos de uso, y documentación en español.
 
 # Tutoriales y casos de uso
 

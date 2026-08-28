@@ -2,6 +2,6 @@
 # Leer [Teuton Book](./docs/index.md).
 
 ```
-Email    : dvarrui@proton.me
+Email    : teuton.software@protonmail.com
 Telegram : @teuton software
 ```

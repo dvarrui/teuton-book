@@ -1,7 +1,7 @@
 [<< back](../index.md)
 
 ```
-EN DESARROLLO!!! (Para la versión 3.0.0)
+EN DESARROLLO!!! (Para la versión 3.3.0)
 ```
 
 # Eventos
@@ -20,11 +20,11 @@ Los eventos tienen tres partes
 
 En una primera versión tendremos los siguientes:
 
-| Tipo      | Elemento       | Descripción                                  |
-| --------- | -------------- | -------------------------------------------- |
-| OBJECT    | last_target    | Se aplica en el último `target` evaluado     |
-| OBJECT    | every_target   | Se aplica en cada uno de los "targets"       |
-| OBJECT    | all_targets    | Se aplica en todos los "targets" en conjunto |
+| Tipo      | Elemento       | Descripción                                      |
+| --------- | -------------- | ------------------------------------------------ |
+| OBJECT    | last_target    | Se aplica en el último `target` evaluado         |
+| OBJECT    | every_target   | Se aplica en cada `target` que se vaya evaluando |
+| OBJECT    | all_targets    | Se aplica en todos los `targets` evaluados hasta el momento |
 | CONDITION | failed         | El estado del objeto es fallido              |
 | CONDITION | is_ok          | El estado del objeto es correcto             |
 | ACTION    | scores_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
@@ -59,7 +59,7 @@ Es test se ejecuta de la siguiente forma:
 * target 1: Se evalúa y se puntúa.
 * target 2: Se evalúa y se puntúa.
 * event: 
-    * `on: :last_taget`: según el resultado del último target haremos:
+    * `on: :last_target`: según el resultado del último target haremos:
     * `when: :failed`
         * Si el resultado es un fallo, entonces el test se termina aquí (para este `case`).
         * Si el resultado es correcto, se continúa de forma normal con el target 3.
@@ -95,7 +95,7 @@ Es test se ejecuta de la siguiente forma:
 * target 1: Se ejecuta y se evalúa.
 * target 2: Se ejecuta y se evalúa.
 * event:
-    * `on: :last_targt`, según el resultado del último target haremos:
+    * `on: :last_target`, según el resultado del último target haremos:
     * `when: :failed`
         * Si el resultado es un fallo, entonces todos los "targets" evaluados hasta el momento se ponen a cero.
         * Si el resultado es correcto se continúa de forma normal.

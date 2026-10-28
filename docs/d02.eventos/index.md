@@ -26,10 +26,9 @@ En una primera versión tendremos los siguientes:
 | OBJECT    | every_target   | Se aplica en cada `target` que se vaya evaluando |
 | OBJECT    | all_targets    | Se aplica en todos los `targets` evaluados hasta el momento |
 | CONDITION | failed         | El estado del objeto es fallido              |
-| CONDITION | is_ok          | El estado del objeto es correcto             |
+| CONDITION | passed         | El estado del objeto es correcto             |
 | ACTION    | scores_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
 | ACTION    | stop           | Se para el test para este `case`             |
-| ACTION    | log            | Registra un mensaje en el log                |
 
 ## Ejemplo 1: acción "stop"
 

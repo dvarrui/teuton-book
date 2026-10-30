@@ -1,7 +1,7 @@
 [<< back](../index.md)
 
 ```
-EN DESARROLLO!!! (Para la versión 3.4.0)
+teuton v3.4.0
 ```
 
 # Eventos
@@ -14,21 +14,27 @@ event on: OBJECT, when: CONDITION do ACTIONS end
 ```
 
 Los eventos tienen tres partes
-* `on: OBJECT`, define el objeto sobre el que se va a definir el evento.
+* `on: OBJECT`, define el objeto o item sobre el que se va a definir el evento.
 * `when: CONDITION`, define la condición que debe cumplirse sobre el OBJECT para disparar la acción o las acciones.
-* `do ACTIONS end`, define la acción o las acciones que se van a ejecutar cuando se dispare el evento.
+* `do ACTIONS end`, define una o varias acciones que se ejecutarán cuando se dispare el evento. Esto es, cuando se cumpla su CONDITION.
 
-En una primera versión tendremos los siguientes:
+En la versión v3.4.0 tendremos los siguientes:
 
-| Tipo      | Elemento       | Descripción                                      |
-| --------- | -------------- | ------------------------------------------------ |
-| OBJECT    | last_target    | Se aplica en el último `target` evaluado         |
-| OBJECT    | every_target   | Se aplica en cada `target` que se vaya evaluando |
-| OBJECT    | all_targets    | Se aplica en todos los `targets` evaluados hasta el momento |
-| CONDITION | failed         | El estado del objeto es fallido              |
-| CONDITION | passed         | El estado del objeto es correcto             |
+| Tipo      | Elemento       | Descripción                                       |
+| --------- | -------------- | ------------------------------------------------- |
+| OBJECT    | last_target    | Se aplica en el último `target` evaluado          |
+| CONDITION | failed         | Se cumple cuando el estado del objeto es fallido  |
+| CONDITION | passed         | Se cumple cuando el estado del objeto es correcto |
 | ACTION    | scores_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
-| ACTION    | stop           | Se para el test para este `case`             |
+| ACTION    | stop           | Se para el test para este `case`                  |
+| ACTION    | log "message"  | Registra un mensaje en el log                     |
+
+En la versión v3.5.0 tendremos:
+
+| Tipo      | Elemento       | Descripción                                       |
+| --------- | -------------- | ------------------------------------------------- |
+| OBJECT    | all_targets    | Se aplica en todos los `targets` evaluados hasta ese momento |
+| OBJECT    | every_target   | Se aplica en cada `target` que se vaya evaluando  |
 
 ## Ejemplo 1: acción "stop"
 
@@ -36,11 +42,11 @@ Ejemplo:
 
 ```ruby
 group "Target con condición de salida" do
-  target "Existe el usuario root"
+  target "Target Ok"
   run "id root"
   expect_ok
 
-  target "Existe el usuario vader", when_fails: :stop
+  target "Target fail"
   run "id vader"
   expect_ok
 
@@ -48,8 +54,8 @@ group "Target con condición de salida" do
     stop
   end
 
-  target "Existe el usuario mail"
-  run "id mail"
+  target "Target Ok"
+  run "id root"
   expect_ok
 end
 ```
@@ -66,26 +72,26 @@ Es test se ejecuta de la siguiente forma:
     * El resto de los "targets" se quedan sin evaluar.
     * La nota final se obtiene de los targets evaluados y los no evaluados.
 
-## Ejemplo 2: acción "grades_to_zero"
+## Ejemplo 2: acción "scores_to_zero"
 
 Ejemplo:
 
 ```ruby
 group "Target con condición de salida" do
-  target "Existe el usuario root"
+  target "Target Ok"
   run "id root"
   expect_ok
 
-  target "Existe el usuario vader"
+  target "Target fail"
   run "id vader"
   expect_ok
 
-  event on: :last_target, when: :failed, do 
+  event on: :last_target, when: :failed do 
     scores_to_zero
   end
 
-  target "Existe el usuario mail"
-  run "id mail"
+  target "Target Ok"
+  run "id root"
   expect_ok
 end
 ```
@@ -108,22 +114,22 @@ Ejemplo:
 
 ```ruby
 group "Target con condición de salida" do
-  target "Existe el usuario root"
+  target "Target Ok"
   run "id root"
   expect_ok
 
-  target "Existe el usuario vader"
+  target "Target fail"
   run "id vader"
   expect_ok
 
-  event on: :last_target, when: :failed, do 
+  event on: :last_target, when: :failed do 
     log "El test se para por fallar el target 2"
     scores_to_zero
     stop
   end
 
-  target "Existe el usuario mail"
-  run "id mail"
+  target "Target Ok"
+  run "id root"
   expect_ok
 end
 ```

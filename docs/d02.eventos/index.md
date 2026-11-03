@@ -1,9 +1,5 @@
 [<< back](../index.md)
 
-```
-teuton v3.4.0
-```
-
 # Eventos
 
 Los eventos sirven para definir acciones que se disparan únicamente cuando se producen las condiciones adecuadas.
@@ -23,6 +19,7 @@ En la versión v3.4.0 tendremos los siguientes:
 | Tipo      | Elemento       | Descripción                                       |
 | --------- | -------------- | ------------------------------------------------- |
 | OBJECT    | last_target    | Se aplica en el último `target` evaluado          |
+| OBJECT    | all_targets    | Se aplica en todos los `targets` evaluados hasta ese momento |
 | CONDITION | failed         | Se cumple cuando el estado del objeto es fallido  |
 | CONDITION | passed         | Se cumple cuando el estado del objeto es correcto |
 | ACTION    | scores_to_zero | Todos los puntos ganados hasta el momento se ponen a cero |
@@ -33,7 +30,6 @@ En la versión v3.5.0 tendremos:
 
 | Tipo      | Elemento       | Descripción                                       |
 | --------- | -------------- | ------------------------------------------------- |
-| OBJECT    | all_targets    | Se aplica en todos los `targets` evaluados hasta ese momento |
 | OBJECT    | every_target   | Se aplica en cada `target` que se vaya evaluando  |
 
 ## Ejemplo 1: acción "stop"

@@ -19,4 +19,4 @@ El proyecto **Teuton Book** surge de la necesidad de tener más información y e
 # Documentación
 
 1. [Tipos de targets](./d01.tipos_de_targets/index.md): Explicación sobre los distintos tipos de "targets" y su caso de uso.
-2. [Eventos](./d02.eventos/index.md): **Propuesta EN DESARROLLO** Los eventos disparan determinadas acciones cuando se dan las circunstancias adecuadas.
+2. [Eventos](./d02.eventos/index.md): Los eventos definen acciones que disparan cuando se dan las circunstancias adecuadas.
